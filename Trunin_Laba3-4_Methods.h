@@ -13,9 +13,9 @@ bool isValidAge(int age);
 void inputPatient();
 
 // функция для отобрадения всех объектов класса 
-void displayAllPatient()
+void displayAllPatients()
 
-// функция для демонстрации функциональности всех конструкторов
+// функция для демонстрации функциональности всех конструкторов 
 void demoConstructors();
 
 void EnterNumber(int &varLink, const string &label);

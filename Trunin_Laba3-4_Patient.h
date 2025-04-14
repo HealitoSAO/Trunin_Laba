@@ -44,7 +44,7 @@ public:
     bool operator<(const Patient &other) const;//сравнение по возрасту
     Patient operator+(const Patient &other) const;//сложение
     Patient &operator++()//префиксный инкремент 
-    Patient operator++(int); // постфиксный инкремент: возвращаем копию текущего объекта, затем увеличиваем год
+    Patient operator++(int);// оператор постфиксный инкремент
     Patient &operator&=(const Patient &other);//оператор присваивания 
     // перегруженный операторы ввода и вывода 
     friend ostream &operator<<(ostream &os, const Patient &patient);

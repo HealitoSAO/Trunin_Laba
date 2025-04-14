@@ -153,7 +153,7 @@ void demoMethods() {
     cout << i6.getAge() << " is the age of " << i5.getAge() << endl;
     patients.push_back(i6);
     cout << endl << " Displaying patient " << endl;
-    displayAllPatient();
+    displayAllPatients();
     cout << endl << endl << "Prefix increment:" << endl;
     int i7_index = getValidIndex();
     Patient i7 = patients[i7_index];
@@ -161,11 +161,16 @@ void demoMethods() {
     cout << i8.getAge() << " is the age of " << i7.getAge() << endl;
     patients.push_back(i8);
     cout << endl << " Displaying patient " << endl;
-    displayAllPatient();
+    displayAllPatients();
     cout << endl << "averageCondition:" << endl;
     int p8_index = getValidIndex();
     Patient p8 = patients[p8_index];
-    cout << "The average condition of all patients is: " << averageCondition() << endl;
+    double avg = 0.0;
+    for (const Patient& p : patients) {
+        avg += averageState(p8);
+    }
+    avg /= patients.size();
+    cout << "The average condition of all patients is: " << avg << endl;
 }
 // функция сортировки пациентов по возрасту
 void sortPatientsByAge() {

@@ -18,11 +18,11 @@ int main() {
 
   // Создание меню с использованием std::map
   map<int, MenuItem> menu = {
-      // {1, {"Input patient", []() { inputPatient(); }}},
-      // {2, {"Display all patients", displayAllPatients}},
-      // {3, {"Demonstrate constructors", demonstrateConstructors}},
-      // {4, {"Demonstrate methods", demonstrateMethods}},
-      // {5, {"Sort patients by age", []() { sortPatientsByAge([](const Patient &a, const Patient &b) { return a < b; }); }}},
+      {1, {"Input patient", []() { inputPatient(); }}},
+      {2, {"Display all patients", displayAllPatients()}},
+      {3, {"Demonstrate constructors", demoConstructors()}},
+      {4, {"Demonstrate methods", demoMethods()}},
+      {5, {"Sort patients by age", []() { sortPatientsByAge(); }}},
   };
 
   unsigned choice = 0; // Переменная для хранения выбора пользователя
