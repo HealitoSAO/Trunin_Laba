@@ -13,7 +13,7 @@ bool isValidAge(int age);
 void inputPatient();
 
 // функция для отобрадения всех объектов класса 
-void displayAllPatients()
+void displayAllPatients();
 
 // функция для демонстрации функциональности всех конструкторов 
 void demoConstructors();

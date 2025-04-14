@@ -1,8 +1,7 @@
 #include <algorithm>
 #include <iostream>
-#include "Trunin_Laba3-4_Patient.cpp"
-#include "Trunin_Laba3-4_Patient.h"
 #include "Trunin_Laba3-4_Methods.h"
+#include "Trunin_Laba3-4_Patient.h"
 using namespace std;
 
 // инициализация глобального вектора
@@ -165,16 +164,17 @@ void demoMethods() {
     cout << endl << "averageCondition:" << endl;
     int p8_index = getValidIndex();
     Patient p8 = patients[p8_index];
-    double avg = 0.0;
+    int avg = 0;
     for (const Patient& p : patients) {
-        avg += averageState(p8);
+       
+        // avg += averageState(p8);
     }
     avg /= patients.size();
     cout << "The average condition of all patients is: " << avg << endl;
 }
 // функция сортировки пациентов по возрасту
 void sortPatientsByAge() {
-    cout << " Sorting patients by age" << endl;
-    std::sort(patients.begin(), patients.end(), [](const Patient&a, const Patient&b) {return a < b; });
+    cout << "Sorting patients by age" << endl;
+    std::sort(patients.begin(), patients.end(), [](const Patient &a, const Patient &b) { return a.getAge() < b.getAge(); });
     displayAllPatients();
 }

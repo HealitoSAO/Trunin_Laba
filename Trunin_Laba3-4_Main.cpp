@@ -19,9 +19,9 @@ int main() {
   // Создание меню с использованием std::map
   map<int, MenuItem> menu = {
       {1, {"Input patient", []() { inputPatient(); }}},
-      {2, {"Display all patients", displayAllPatients()}},
-      {3, {"Demonstrate constructors", demoConstructors()}},
-      {4, {"Demonstrate methods", demoMethods()}},
+      {2, {"Display all patients", []() {displayAllPatients();}}},
+      {3, {"Demonstrate constructors", []() {demoConstructors();}}},
+      {4, {"Demonstrate methods", []() {demoMethods();}}},
       {5, {"Sort patients by age", []() { sortPatientsByAge(); }}},
   };
 
