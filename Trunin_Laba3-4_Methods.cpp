@@ -98,7 +98,7 @@ void demoConstructors() {
     Patient p2("John Doe", 25, {188.0, 195.0}, {70.0, 80.0}); // вызов параметризированного конструктора
     Patient p3 = p2; // конструктор копирования
     Patient p4("Transformers", 0, {}, {}); // конструктор преобразования 
-    Patient p5("John de Doe", 1, std::vector<double>({"Diagnosis 1"}), std::vector<double>({100})); // делегирующий конструктор
+    Patient p5("Transformers", 0, {0.0, 0.0}, {0.0, 0.0});// делигирующий конструктор
 
     // добавлем пациентов в вектор 
     patients.push_back(p1);
@@ -132,7 +132,7 @@ void demoMethods() {
         cout << q3.getName() << " and " << q4.getName() << " are of the same age." << endl;
     }
     cout << " Displaying patient " << endl;
-    displayAllPatient();
+    displayAllPatients();
     cout << endl;
     cout << endl << "Sum" << endl;
     int s1_index = getValidIndex();
@@ -165,11 +165,11 @@ void demoMethods() {
     cout << endl << "averageCondition:" << endl;
     int p8_index = getValidIndex();
     Patient p8 = patients[p8_index];
-    cout << p8.averageCondition() << endl;
+    cout << "The average condition of all patients is: " << averageCondition() << endl;
 }
 // функция сортировки пациентов по возрасту
 void sortPatientsByAge() {
     cout << " Sorting patients by age" << endl;
     std::sort(patients.begin(), patients.end(), [](const Patient&a, const Patient&b) {return a < b; });
-    displayAllPatient();
+    displayAllPatients();
 }
