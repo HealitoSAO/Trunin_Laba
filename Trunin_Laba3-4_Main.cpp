@@ -1,10 +1,17 @@
-#include "Trunin_Laba3-4_Methods.cpp"
+#include <iostream>
 #include <ctime>
 #include <functional>
-#include <iostream>
 #include <map>
-
+#include "Trunin_Laba3-4_Patient.cpp"
 using namespace std;
+
+// делегирование контсрукторов 
+// все операции сравнения 6 штук ГОТОВО  
+// заменить син на гетлайн при вводе индекста в мметодах ГОТОВО
+// разобраться с постфиксным ++ 
+// сложение по всем полям 
+// среднее состояние 
+// список диагнозов стринговский 
 
 // Структура для элемента меню
 struct MenuItem {

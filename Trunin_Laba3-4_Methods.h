@@ -5,7 +5,7 @@
 #include "Trunin_Laba3-4_Patient.h"
 
 // глобальный вектор объектов Patient
-extern std::vector<Patient> patients;
+std::vector<Patient*> patients;
 
 // функции проверки корректности ввода данных 
 bool isValidAge(int age);
@@ -18,9 +18,9 @@ void displayAllPatients();
 // функция для демонстрации функциональности всех конструкторов 
 void demoConstructors();
 
-void EnterNumber(int &varLink, const string &label);
+void EnterNumber(int &varLink, const string &label, istream &is);
 
-void EnterString(string &varLink, const string &label);\
+void EnterString(string &varLink, const string &label, istream &is);
 
 // Функция для демонстрации функциональности всех методов класса
 void demoMethods();

@@ -1,11 +1,11 @@
 #include <algorithm>
 #include <iostream>
 #include "Trunin_Laba3-4_Methods.h"
-#include "Trunin_Laba3-4_Patient.h"
+// #include "Trunin_Laba3-4_Patient.h"
 using namespace std;
 
 // инициализация глобального вектора
-vector<Patient> patients;
+// vector<Patient> patients;
 
 bool isValidNumber(const string &input) {
     if (input.empty())
@@ -19,15 +19,15 @@ bool isValidNumber(const string &input) {
 }
 
 // Функция для ввода числа
-void EnterNumber(int &varLink, const string &label) {
+void EnterNumber(int &varLink, const string &label , istream &is = cin) {
     string raw_input;
     cout << label;
-    getline(cin, raw_input);
+    getline(is, raw_input);
 
     // Цикл для повторного запроса числа, пока не будет введено корректное значение
     while (!isValidNumber(raw_input)) {
         cout << "Invalid input. " << label;
-        getline(cin, raw_input);
+        getline(is, raw_input);
     }
 
     varLink = stoi(raw_input); // Преобразуем строку в целое число
@@ -36,15 +36,15 @@ void EnterNumber(int &varLink, const string &label) {
 bool isNotEmptyString(const string &input) { return !input.empty(); }
 
 // функция для ввода строки
-void EnterString(string &varLink, const string &label) {
+void EnterString(string &varLink, const string &label, istream &is = cin) {
     string raw_input;
     cout << label;
-    getline(cin, raw_input);
+    getline(is, raw_input);
 
     // Цикл для повторного запроса строка, пока не будет введено корректное значение
     while (!isNotEmptyString(raw_input)) {
         cout << "Invalid input. " << label;
-        getline(cin, raw_input);
+        getline(is, raw_input);
     }
 
     varLink = raw_input; // на выходе должна быть строка
@@ -56,8 +56,10 @@ bool isValidAge(int age) {
 
 // функция ввода пациента
 void inputPatient() {
-    Patient p;
-    cin>>p;
+    Patient *p = new Patient();
+    // (*p).display();
+    cout << *p;
+    cin >> *p;
     patients.push_back(p);
 }
 // функция для отображения всех объектов класса 
@@ -66,8 +68,8 @@ void displayAllPatients() {
         cout << "No patients in the list." << endl;
         return;
     }
-    for (const Patient &p : patients) {
-        cout << p << endl;
+    for (const Patient *p : patients) {
+        cout << *p << endl;
     }
 }
 int getValidIndex() {
@@ -75,7 +77,7 @@ int getValidIndex() {
     while (true) {
         cout << "Enter the index of a patient: ";
         string raw_input;
-        cin >> raw_input;
+        getline(cin, raw_input);
         if (!isValidNumber(raw_input)) {
             cout << "Invalid input. Number expected." << endl;
             continue;
@@ -93,11 +95,11 @@ int getValidIndex() {
 void demoConstructors() {
     cout << "Demonstrating constructors:" << endl;
     // Создаём несколько объектов Patient 
-    Patient p1; // конструктор по умолчанию
-    Patient p2("John Doe", 25, {188.0, 195.0}, {70.0, 80.0}); // вызов параметризированного конструктора
-    Patient p3 = p2; // конструктор копирования
-    Patient p4("Transformers", 0, {}, {}); // конструктор преобразования 
-    Patient p5("Transformers", 0, {0.0, 0.0}, {0.0, 0.0});// делигирующий конструктор
+    Patient *p1 = new Patient; // конструктор по умолчанию
+    Patient *p2 = new Patient("John Doe", 25, {188.0, 195.0}, {70.0, 80.0}); // вызов параметризированного конструктора
+    Patient *p3 = p2; // конструктор копирования
+    Patient *p4 = new Patient("Transformers"); // конструктор преобразования 
+    Patient *p5 = new Patient("Transformers", 0, {0.0, 0.0}, {0.0, 0.0});// делигирующий конструктор
 
     // добавлем пациентов в вектор 
     patients.push_back(p1);
@@ -119,9 +121,9 @@ void demoMethods() {
     }
     // сравнение по возрасту 
     int q3_index = getValidIndex();
-    Patient q3 = patients[q3_index];
+    Patient& q3 = *patients[q3_index];
     int q4_index = getValidIndex();
-    Patient q4 = patients[q4_index];
+    Patient q4 = *patients[q4_index];
     cout << endl << "Comparison of patients by age: " << endl;
     if (q4 < q3) {
         cout << q3.getName() << " is older than " << q4.getName() << endl;
@@ -136,45 +138,46 @@ void demoMethods() {
     cout << endl << "Sum" << endl;
     int s1_index = getValidIndex();
     int s2_index = getValidIndex();
-    Patient s1 = patients[s1_index];
-    Patient s2 = patients[s2_index];
+    Patient s1 = *patients[s1_index];
+    Patient s2 = *patients[s2_index];
     Patient s4 = s1+s2;
     cout << "Sum of patients " << s1.getName() << " and " << s2.getName() << "is " << s4.getName() << endl;
     cout << s4;
-    patients.push_back(s4);
+    patients.push_back(&s4);
     cout << endl << " Displaying all patients after adding the sum" << endl;
     displayAllPatients();
     cout << endl << endl << "Postfix increment:" << endl;
     int i5_index = getValidIndex();
-    Patient i5 = patients[i5_index];
-    Patient i6 = i5;
-    ++i5;
+    Patient i5 = *patients[i5_index];
+    Patient i6 = i5++;
+    // ++i5;
     cout << i6.getAge() << " is the age of " << i5.getAge() << endl;
-    patients.push_back(i6);
+    patients.push_back(&i6);
     cout << endl << " Displaying patient " << endl;
     displayAllPatients();
     cout << endl << endl << "Prefix increment:" << endl;
     int i7_index = getValidIndex();
-    Patient i7 = patients[i7_index];
-    Patient i8 = ++i7;
+    Patient i7 = *patients[i7_index];
+    Patient i8 = i7++;
     cout << i8.getAge() << " is the age of " << i7.getAge() << endl;
-    patients.push_back(i8);
+    patients.push_back(&i8);
     cout << endl << " Displaying patient " << endl;
     displayAllPatients();
     cout << endl << "averageCondition:" << endl;
     int p8_index = getValidIndex();
-    Patient p8 = patients[p8_index];
-    int avg = 0;
-    for (const Patient& p : patients) {
+    Patient p8 = *patients[p8_index];
+    int avg = p8.averageState();
+    // for (auto p : patients) {
        
-        // avg += averageState(p8);
-    }
+    //     avg += (*p).averageState();
+    // }
     avg /= patients.size();
     cout << "The average condition of all patients is: " << avg << endl;
 }
 // функция сортировки пациентов по возрасту
 void sortPatientsByAge() {
     cout << "Sorting patients by age" << endl;
-    std::sort(patients.begin(), patients.end(), [](const Patient &a, const Patient &b) { return a.getAge() < b.getAge(); });
+    std::sort(patients.begin(), patients.end(), [](Patient *a,  Patient *b) { return (*a).getAge() < (*b).getAge(); });
     displayAllPatients();
 }
+
